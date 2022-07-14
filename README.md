@@ -69,6 +69,38 @@ const shelf = renderShelfHTML('Project Name', usecases(), './custom-readme.md')
 
 ```
 
+### Entities 
+
+You can given your entities do create a class diagram to explore your project.
+
+Consider a file called _entities.js with this inside
+
+```javascript
+
+
+module.exports = (injection) => {
+    return [
+        { entity: require('./myEntity1'), id: 'Entity1' tags: { group: 'GroupOne' } },
+        { entity: require('./myEntity2'), id: 'Entity2' tags: { group: 'GroupOne' } },
+        { entity: require('./myEntity3'), id: 'Entity3' tags: { group: 'GroupTwo' } },
+    ]
+}
+```
+
+And given entities to shelf render method
+
+
+```javascript
+
+ this.app.get('/herbsshelf', (req, res, next) => {
+    res.setHeader('Content-Type', 'text/html')
+    const shelf = renderShelfHTML('Project Name', usecases(), entities)
+    res.write(shelf)
+    res.end()
+})
+
+```
+
 
 You can see the full functionality into the [TODO-LIST ON HERBS repository](https://github.com/herbsjs/todolist-on-herbs)
 
